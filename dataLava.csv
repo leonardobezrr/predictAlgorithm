@@ -1,0 +1,286 @@
+ID,Data,Dia da Semana,Cliente,Tipo Veículo (Est.),Descrição Original,Valor (R$)
+02/10,,,,,,
+47,02/10/2025,Quinta,Gilmar Santana,Carro,Lavagem carro simples,50.0
+45,02/10/2025,Quinta,Maguin,Carro,Lavagem com polimento,70.0
+42,02/10/2025,Quinta,Cadu,Carro,Lavagem com enceramento,70.0
+38,02/10/2025,Quinta,Thalys,Carro,Lavagem c/ enceramento e couro,80.0
+43,02/10/2025,Quinta,Cadu,Carro,Lavagem com enceramento,60.0
+48,02/10/2025,Quinta,Rurru,Carro,Lavagem com enceramento,70.0
+03/10,,,,,,
+52,03/10/2025,Sexta,Katarina,Carro,Lavagem com polimento,30.0
+53,03/10/2025,Sexta,Francisco,Moto,Lavagem com polimento moto,30.0
+51,03/10/2025,Sexta,Miriam,Carro,Lavagem com polimento,30.0
+54,03/10/2025,Sexta,Inaldo,Moto,Lavagem moto,30.0
+04/10,,,,,,
+34,04/10/2025,Sábado,Iran do Pedrecau,Carro,Lavagem com enceramento,70.0
+58,04/10/2025,Sábado,Binha,Carro,Lavagem,50.0
+56,04/10/2025,Sábado,Nubinha,Carro,Lavagem com enceramento,70.0
+55,04/10/2025,Sábado,Mariana,Carro,Lavagem com polimento,70.0
+35,04/10/2025,Sábado,Chaguinha,Carro,Lavagem simples,40.0
+59,04/10/2025,Sábado,Muiraquitã,Carro,Lavagem,50.0
+57,04/10/2025,Sábado,Cyro,Carro,Lavagem com polimento,70.0
+06/10,,,,,,
+61,06/10/2025,Segunda,Renner,Carro,Lavagem com polimento,30.0
+63,06/10/2025,Segunda,Isac,Moto,Lavagem moto,30.0
+65,06/10/2025,Segunda,Tiago,Carro,Lavagem,50.0
+60,06/10/2025,Segunda,Junior de Manu,Moto,Lavagem moto,30.0
+68,06/10/2025,Segunda,Sara,Carro,lavagem com polimento,70.0
+69,06/10/2025,Segunda,Lucas de Sali,Carro,lavagem com hidratação bancos,80.0
+07/10,,,,,,
+71,07/10/2025,Terça,Jailson,Moto,Lavagem moto c/ remocao cola,35.0
+72,07/10/2025,Terça,Caba da moto,Moto,Lavagem moto,25.0
+70,07/10/2025,Terça,Germano,Carro,Lavagem carro,70.0
+76,07/10/2025,Terça,Lucas,Carro,"Lav c/ encer, hidrata, polim farol",120.0
+78,07/10/2025,Terça,Junior,N/I,Hidratação de banco,10.0
+08/10,,,,,,
+75,08/10/2025,Quarta,Luan,D20 (Pickup),lavagem d20,0.0
+81,08/10/2025,Quarta,Saveiro,Pickup,lavagem com enceramento,70.0
+80,08/10/2025,Quarta,João Rosa,Outros,Lavagem poltrona,30.0
+82,08/10/2025,Quarta,Dedé,Carro,lavagem,50.0
+85,08/10/2025,Quarta,Bross,Moto,lavagem com enceramento,30.0
+09/10,,,,,,
+77,09/10/2025,Quinta,Dayla,Carro,Lavagem com enceramento,80.0
+83,09/10/2025,Quinta,Auricelio,Carro,lavagem e enceramento,70.0
+91,09/10/2025,Quinta,Marcelo,Carro,Lavagem,0.0
+89,09/10/2025,Quinta,Dandara,Carro,lavagem com enceramento,70.0
+88,09/10/2025,Quinta,Domingos,Carro,Lavagem com enceramento,70.0
+10/10,,,,,,
+93,10/10/2025,Sexta,Vandinho,Carro,lavagem com enceramento,70.0
+97,10/10/2025,Sexta,Cicero,Carro,Lavagem com enceramento,70.0
+67,10/10/2025,Sexta,Bilu,Carro,lavagem com hidratação de bancos,70.0
+98,10/10/2025,Sexta,Ceição,Carro,lavagem com enceramento,70.0
+11/10,,,,,,
+86,11/10/2025,Sábado,Eduardo Totoin,Carro,Lavagem com enceramento,70.0
+90,11/10/2025,Sábado,Jubinha pg,Carro,Lavagem,40.0
+100,11/10/2025,Sábado,Cassiano pg,Carro,"Lavagem, cera e higienização",250.0
+74,11/10/2025,Sábado,Chaguinha pg,Carro,lavagem,40.0
+79,11/10/2025,Sábado,Davi pg,Moto,lavagem moto com polimento,30.0
+94,11/10/2025,Sábado,Joãozinho pg,Carro,Lavagem com enceramento,80.0
+95,11/10/2025,Sábado,Reginaldo pg,Carro,Lavagem,50.0
+13/10,,,,,,
+102,13/10/2025,Segunda,Toinho constr,Carro,Lavagem,30.0
+110,13/10/2025,Segunda,Negao PG,Moto,lavagem moto,30.0
+111,13/10/2025,Segunda,Caba do sítio,Moto,Lavagem moto,30.0
+112,13/10/2025,Segunda,João Renato,Carro,Lavagem carro,50.0
+115,13/10/2025,Segunda,Diogo PG,Moto,Lavagem moto,30.0
+116,13/10/2025,Segunda,Gabi de jarda,Moto,Lavagem moto,30.0
+14/10,,,,,,
+103,14/10/2025,Terça,Gugu pg,Carro,Lavagem carro,70.0
+113,14/10/2025,Terça,Luciano PG,Moto (2x),Lavagem 2 motos,30.0
+120,14/10/2025,Terça,Seu Luís PG,Moto,Lavagem moto,25.0
+107,14/10/2025,Terça,Damião PG,Carro,Lavagem com enceramento,70.0
+114,14/10/2025,Terça,Edvalson PG,Carro,Lav c/ encer e tirar adesivo,120.0
+119,14/10/2025,Terça,Marcelo PG,Carro,Lavagem simples,50.0
+122,14/10/2025,Terça,Domingos PG,Carro,Lavagem carro,70.0
+117,14/10/2025,Terça,Jarda PG,Moto,Lavagem moto,30.0
+15/10,,,,,,
+104,15/10/2025,Quarta,Toinho Const.,Pickup,Polimento d20,90.0
+121,15/10/2025,Quarta,Maia PG,Moto,Lavagem moto,30.0
+123,15/10/2025,Quarta,Ítalo Morais,Carro,"Lav c/ encer, hidratação...",130.0
+125,15/10/2025,Quarta,Zé Lucas Pg,Moto,Lavagem moto,25.0
+126,15/10/2025,Quarta,Ana Luísa PG,Moto,Lavagem moto,30.0
+124,15/10/2025,Quarta,Francisca PG,Carro,Lavagem com enceramento,70.0
+127,15/10/2025,Quarta,LucasPG,Moto,Lavagem moto,30.0
+16/10,,,,,,
+108,16/10/2025,Quinta,Jó PG,Carro,Lavagem simples,80.0
+130,16/10/2025,Quinta,Juliana PG,Outros,Lavagem caixa d'água,20.0
+131,16/10/2025,Quinta,Tadeu PG,Moto,Lavagem moto,30.0
+129,16/10/2025,Quinta,Silvanildo PG,Carro,Lavagem e enceramento,70.0
+133,16/10/2025,Quinta,Galeguinho,Carro,Lavagem carro,50.0
+134,16/10/2025,Quinta,Diogo PG,Produto,Venda cheirinho,20.0
+17/10,,,,,,
+109,17/10/2025,Sexta,Sávio PG,Moto*,Lavagem,20.0
+138,17/10/2025,Sexta,Nunes PG,Carro,lavagem e enceramento,70.0
+135,17/10/2025,Sexta,Fábio PG,Carro,Lavagem carro,50.0
+141,17/10/2025,Sexta,Iolanda PG,Carro,Lavagem e enceramento,70.0
+139,17/10/2025,Sexta,Leonam PG,Carro,lavagem simples,70.0
+18/10,,,,,,
+142,18/10/2025,Sábado,Diogo PG,Carro,Lavagem e enceramento,70.0
+140,18/10/2025,Sábado,Deusilene PG,Moto,Lavagem moto,30.0
+143,18/10/2025,Sábado,Eduardo t.,Carro,lavagem com enceramento,80.0
+136,18/10/2025,Sábado,Jubinha PG,Carro,Lavagem carro,40.0
+137,18/10/2025,Sábado,Sávio PG,Carro,Lav polimento e vaselina,200.0
+128,18/10/2025,Sábado,Chaguinha,Carro,lavagem simples,40.0
+146,18/10/2025,Sábado,Adriano PG,Carro,Lavagem,50.0
+20/10,,,,,,
+151,20/10/2025,Segunda,Suzana PG,Moto,Lavagem moto,30.0
+150,20/10/2025,Segunda,Irmão galego,Carro,Lavagem simples,50.0
+155,20/10/2025,Segunda,Pacifico PG,Carro,Lavagem com enceramento,80.0
+156,20/10/2025,Segunda,Gilmar acad.,Carro,Lavagem com enceramento,70.0
+21/10,,,,,,
+148,21/10/2025,Terça,Eduardo T.,Carro,Higienização interna,250.0
+157,21/10/2025,Terça,Gilvan,Carro,Lavagem com enceramento,70.0
+163,21/10/2025,Terça,Leo,Carro,Lavagem carro,70.0
+164,21/10/2025,Terça,Moto,Moto,lavagem,25.0
+22/10,,,,,,
+165,22/10/2025,Quarta,Camila PG,Carro,Lav c/ encer + motor,70.0
+154,22/10/2025,Quarta,Caio pg,Carro,Lavagem completa Full HD,300.0
+153,22/10/2025,Quarta,Saulo W.,Carro,Lavagem carro,70.0
+162,22/10/2025,Quarta,Thalin PG,Carro,lavagem carro,50.0
+166,22/10/2025,Quarta,Gin PG,Carro,Lavagem,50.0
+23/10,,,,,,
+152,23/10/2025,Quinta,Braz Brito,Carro,Lavagem + polimento,70.0
+159,23/10/2025,Quinta,Guaxinim,Carro,Lav c/ encer + hidrat + vaselina,100.0
+171,23/10/2025,Quinta,Jackson,Carro,Lavagem com enceramento,70.0
+172,23/10/2025,Quinta,Gin,Moto,lavagem moto,30.0
+24/10,,,,,,
+174,24/10/2025,Sexta,Margarete,Carro,Lavagem de forro,80.0
+177,24/10/2025,Sexta,Rurru pg,Carro,higienização,250.0
+176,24/10/2025,Sexta,Italo ex lala,Moto*,Lavagem + enceramento,30.0
+27/10,,,,,,
+173,27/10/2025,Segunda,Rafael Nunes,Carro (2x),Lavagem 2 carros,100.0
+188,27/10/2025,Segunda,Eder PG,Moto,Lavagem moto,25.0
+189,27/10/2025,Segunda,Bastião PG,Carro,Lavage,50.0
+193,27/10/2025,Segunda,Eduardo T.,Carro,lavagem com enceramento,70.0
+28/10,,,,,,
+195,28/10/2025,Terça,Marcone PG,Moto*,Lavagem + polimento,30.0
+199,28/10/2025,Terça,Gustavo PG,Moto,Lavagem moto polim maq,50.0
+200,28/10/2025,Terça,Damião PG,Moto*,Lavagem com enceramento,30.0
+29/10,,,,,,
+202,29/10/2025,Quarta,Batista M.,Carro,Lavagem,60.0
+203,29/10/2025,Quarta,Domingos,Carro,Lav + encer + hidratação,80.0
+204,29/10/2025,Quarta,Caba S.Bento,Moto,Batida d'água c sopro,30.0
+205,29/10/2025,Quarta,Galego Twister,Moto,Lavagem + polimento,30.0
+30/10,,,,,,
+208,30/10/2025,Quinta,Anastácia,Moto,Lavagem,24.0
+186,30/10/2025,Quinta,Alcida PG,Carro,Higienização full 4k + farol,300.0
+209,30/10/2025,Quinta,Patrícia PG,Moto*,Lavagem + polimento,30.0
+31/10,,,,,,
+201,31/10/2025,Sexta,Ramon Magna,Carro,Lavagem com enceramento,70.0
+211,31/10/2025,Sexta,Cyro PG,Moto,lavagem moto c enceramento,30.0
+212,31/10/2025,Sexta,Caíque PG,Carro,Higienização interna full 4k,250.0
+194,31/10/2025,Sexta,Fabíola PG,Carro,Lavagem com enceramento,50.0
+214,31/10/2025,Sexta,Irismar PG,Carro,Lavagem carro,50.0
+215,31/10/2025,Sexta,Dada PG,Moto,lavagem simples moto,25.0
+01/11,,,,,,
+191,01/11/2025,Sábado,Titico PG,Carro,Lavagem + polimento,70.0
+207,01/11/2025,Sábado,Manoel Jr,Moto,lavagem c enceramento,30.0
+213,01/11/2025,Sábado,Joãozinho Px,Moto,Só lavagem externa,25.0
+219,01/11/2025,Sábado,Wagner Bez.,Carro,Lav + encer + hidrat bancos,80.0
+220,01/11/2025,Sábado,Galeguinho,Carro,Lavagem care (Carro?),50.0
+217,01/11/2025,Sábado,Cabeludo PG,Moto,Lavagem c enceramento moto,30.0
+196,01/11/2025,Sábado,Chaguinha,Carro,Lavagem simples + polimento,60.0
+216,01/11/2025,Sábado,Nabor Neto,Pickup,Lavagem s10,60.0
+221,01/11/2025,Sábado,Daniel PG,Moto,Lavagem moto,30.0
+224,01/11/2025,Sábado,Diogo PG,Carro,Lavagem simples,50.0
+223,01/11/2025,Sábado,Zé PG,Moto,Lavagem moto,30.0
+03/11,,,,,,
+229,03/11/2025,Segunda,Messias,Carro,Lavagem com enceramento,70.0
+230,03/11/2025,Segunda,Tenile pg,Carro,Lavagem simples,60.0
+232,03/11/2025,Segunda,Renner pg,Moto,Lavagem moto c enceramento,30.0
+231,03/11/2025,Segunda,Vandinho,Carro,Lavagem simples c hidratação,60.0
+04/11,,,,,,
+234,04/11/2025,Terça,Amanda,Carro,Lav + encer + silicone int,80.0
+236,04/11/2025,Terça,Adriana R.,Moto*,Lavagem + polimento,30.0
+237,04/11/2025,Terça,Luiza de J.,Moto*,Lavagem + polimento,30.0
+235,04/11/2025,Terça,Alexandre,Carro,Lavagem c enceramento,70.0
+239,04/11/2025,Terça,Ze rezador,Moto (2x),Lavagem 2 motos,60.0
+05/11,,,,,,
+240,05/11/2025,Quarta,Reginaldo,Carro,Lavagem simples,50.0
+238,05/11/2025,Quarta,Adriana R.,Moto*,Lavagem + polimento,30.0
+241,05/11/2025,Quarta,Batista,Carro,Lavagem + polimento,70.0
+242,05/11/2025,Quarta,Fernando L.,Carro,Lavagem simples,50.0
+244,05/11/2025,Quarta,(Não Ident),Moto*,Lavagem + enceramento,30.0
+243,05/11/2025,Quarta,Isaac,Carro,Lavagem + polimento,70.0
+06/11,,,,,,
+248,06/11/2025,Quinta,Anderson N.,Carro,Lavagem + polimento,70.0
+249,06/11/2025,Quinta,Munhé,Moto,Moto,30.0
+252,06/11/2025,Quinta,Leo Varied.,Carro,Lavagem simples,50.0
+250,06/11/2025,Quinta,Márcia bolo,Moto*,Lavagem + polimento,30.0
+254,06/11/2025,Quinta,Geraldo pg,Moto*,Lavagem c enceramento,30.0
+246,06/11/2025,Quinta,Adeilson PG,Carro,lav c/ enceramento + máquina,40.0
+07/11,,,,,,
+251,07/11/2025,Sexta,Cyro,Pickup,lavagem caminhonete,70.0
+256,07/11/2025,Sexta,Maze prof,Carro,Lavagem simples,50.0
+261,07/11/2025,Sexta,Aparecida,Carro,Lavagem com enceramento,70.0
+262,07/11/2025,Sexta,Pretinho,Moto*,Lavagem + enceramento,30.0
+08/11,,,,,,
+245,08/11/2025,Sábado,Iran,Carro,lavagem + encer + cheiro,80.0
+263,08/11/2025,Sábado,Josicler,Combo,2 Motos + 1 Carro,100.0
+259,08/11/2025,Sábado,Juba taxista,Carro,Lavagem carro,40.0
+258,08/11/2025,Sábado,Keko,Carro,lavagem polim + hidrat,80.0
+264,08/11/2025,Sábado,João Batista,Carro,Lavagem + encer + cheiro,80.0
+265,08/11/2025,Sábado,Tadeu,Moto,Lavagem moto,25.0
+247,08/11/2025,Sábado,Chaguinha,Carro,Lavage carro,40.0
+253,08/11/2025,Sábado,Jefferson,Carro,Lavagem + polimento,70.0
+260,08/11/2025,Sábado,Reginaldo,Van,Lavagem da van,50.0
+10/11,,,,,,
+266,10/11/2025,Segunda,Eduardo T.,Carro,Lavagem + enceramento,70.0
+11/11,,,,,,
+267,11/11/2025,Terça,Moto 1,Moto,com polimento,30.0
+268,11/11/2025,Terça,Moto 2,Moto,com polimento,30.0
+269,11/11/2025,Terça,João L.,Carro?,Lavagem externa,25.0
+271,11/11/2025,Terça,Silas,Moto*,Lavagem,30.0
+272,11/11/2025,Terça,Anderson Zé,Moto,Lavagem moto,10.0
+12/11,,,,,,
+273,12/11/2025,Quarta,Zé Pedro,Carro,Lav + encer + piche,80.0
+274,12/11/2025,Quarta,Roosevelt,Carro,Lavagem + polimento,70.0
+275,12/11/2025,Quarta,Antônio,Carro,Lavagem + enceramento,70.0
+276,12/11/2025,Quarta,Senhor,Moto*,Lavagem,30.0
+13/11,,,,,,
+278,13/11/2025,Quinta,Joseane,Moto*,Lavagem + polimento,30.0
+279,13/11/2025,Quinta,Sara,Carro,Lavagem + polimento,70.0
+280,13/11/2025,Quinta,De Morais,Carro,Lavagem,50.0
+281,13/11/2025,Quinta,Paulinho,Moto,Lavagem + polimento,30.0
+282,13/11/2025,Quinta,Cecília,Carro,Lavagem + polimento,70.0
+283,13/11/2025,Quinta,Elias,Carro,lavagem,50.0
+14/11,,,,,,
+284,14/11/2025,Sexta,Gilmar,Carro,Lavagem,50.0
+270,14/11/2025,Sexta,Silvestre,Moto,Lavagem moto,25.0
+285,14/11/2025,Sexta,Eduardo T.,Carro,lavagem simples,60.0
+288,14/11/2025,Sexta,Saul,Moto*,Lavagem + enceramento,30.0
+289,14/11/2025,Sexta,Chico,Moto*,Lavagem + polimento,30.0
+287,14/11/2025,Sexta,Ana Célia,Carro,Lavagem com enceramento,70.0
+15/11,,,,,,
+286,15/11/2025,Sábado,Pedin,Van,Lavagem van,50.0
+291,15/11/2025,Sábado,Leandro,Van,Lavagem Van,50.0
+292,15/11/2025,Sábado,Ubiranir,Moto,lav + polim + hidrat,35.0
+293,15/11/2025,Sábado,Marcelo,Combo,Lav carro + moto,110.0
+294,15/11/2025,Sábado,Severina,Carro,Lavage simples,50.0
+295,15/11/2025,Sábado,Tassio,Moto,Lavagem + polimento,30.0
+298,15/11/2025,Sábado,Pretinho,Moto,Lavagem simples moto,25.0
+296,15/11/2025,Sábado,Tyrone,Carro,Lavagem (enceramento?),70.0
+297,15/11/2025,Sábado,Vanderlei,Carro,Lavagem simples,50.0
+299,15/11/2025,Sábado,Chaguinha,Moto,Lavagem moto,25.0
+17/11,,,,,,
+302,17/11/2025,Segunda,Jubinha,Carro,Carro,40.0
+304,17/11/2025,Segunda,Luciano,Moto (2x),2 motos,60.0
+305,17/11/2025,Segunda,Muiraquitã,Carro?,Limpeza interna,25.0
+306,17/11/2025,Segunda,Didi,Carro,lavagem com enceramento,70.0
+308,17/11/2025,Segunda,Cabra moto,Moto,Lavagem com enceramento,30.0
+309,17/11/2025,Segunda,Lucas,Pickup,Lav c/ encer + hidrat,90.0
+310,17/11/2025,Segunda,Vanderson,Moto,Moto,30.0
+18/11,,,,,,
+301,18/11/2025,Terça,Cintia,Carro,Lavagem moto (sic) polim,50.0
+312,18/11/2025,Terça,Anderson,Carro,Lavagem com enceramento,80.0
+307,18/11/2025,Terça,Damião,Carro,Lavagem com enceramento,70.0
+317,18/11/2025,Terça,Sirmonio,Moto,Lavagem com enceramento,30.0
+314,18/11/2025,Terça,Margarete,Carro,Lavagem simples,50.0
+315,18/11/2025,Terça,João Rosa,Carro,Lavagem com enceramento,60.0
+316,18/11/2025,Terça,Roosevelt,Carro,Lavagem + enceramento,70.0
+19/11,,,,,,
+321,19/11/2025,Quarta,Ivete,Moto,Lavagem moto c enceramento,30.0
+325,19/11/2025,Quarta,Elias Oficina,Carro*,Lavagem + polimento,80.0
+330,19/11/2025,Quarta,Gean,Moto*,Lavar,25.0
+328,19/11/2025,Quarta,Nina,Carro*,Lavagem + polimento,80.0
+322,19/11/2025,Quarta,Antônio,Pickup,Lavagem Hilux,90.0
+332,19/11/2025,Quarta,José,Moto,Lavagem moto,30.0
+20/11,,,,,,
+311,20/11/2025,Quinta,Messias,Carro,Lavagem com polimento,70.0
+331,20/11/2025,Quinta,Tyrone,Moto,Lavagem com polimento,30.0
+326,20/11/2025,Quinta,Dario,Carro,Lavagem com enceramento,70.0
+21/11,,,,,,
+333,21/11/2025,Sexta,Regina,Carro,Lavagem simples,50.0
+337,21/11/2025,Sexta,Vandinho,Carro,Lavagem,50.0
+336,21/11/2025,Sexta,Maxsuel,Moto,Lavagem + polimento,30.0
+338,21/11/2025,Sexta,Adriano,Carro,Lavagem,50.0
+339,21/11/2025,Sexta,Igor Fern.,Carro,Lavagem,70.0
+342,21/11/2025,Sexta,Mateus,Moto,Lavagem + enceramento,30.0
+22/11,,,,,,
+340,22/11/2025,Sábado,Pedro Jr,Moto,Lavagem + polimento,30.0
+343,22/11/2025,Sábado,João Paulo,Carro,Lavagem + enceramento,70.0
+346,22/11/2025,Sábado,Ivo,Moto,Lavagem + polimento,30.0
+318,22/11/2025,Sábado,Chaguinha,Carro,Lavagem simples,40.0
+347,22/11/2025,Sábado,PJ,Carro,Lavagem + polimento,70.0
+341,22/11/2025,Sábado,Domingos,Carro,Lavagem + enceramento,70.0
+319,22/11/2025,Sábado,Reginaldo,Van,Lavagem van,50.0
