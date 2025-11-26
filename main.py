@@ -116,7 +116,7 @@ if not df.empty:
     vendas_mensais['Mes_Ano'] = vendas_mensais['Data'].dt.strftime('%b/%Y')
 
     fig_mensal = px.bar(vendas_mensais, x='Mes_Ano', y='Faturamento',
-                        text_auto='R$ .2s', # Mostra o valor em cima da barra
+                        text_auto='.2f', # Mostra o valor em cima da barra
                         template="plotly_white",
                         title="Evolução do Faturamento Mês a Mês")
     
@@ -125,24 +125,45 @@ if not df.empty:
     fig_mensal.update_layout(xaxis_title="Mês", yaxis_title="Total (R$)")
     
     st.plotly_chart(fig_mensal, use_container_width=True)
+   
+    # --- GRÁFICOS DE RAIO-X DA OPERAÇÃO ---
 
-    # Gráfico de Sazonalidade (Dia da Semana)
-    st.subheader("📊 Performance por Dia da Semana (Sazonalidade)")
-    
-    # Ordenando corretamente os dias da semana
+    st.markdown("---")
+    st.subheader("📊 Raio-X da Operação: Dinheiro vs. Quantidade")
+
+    col_raio_x1, col_raio_x2 = st.columns(2)
     ordem_dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
-    
+
     # Média de faturamento por dia da semana
     media_dia_semana = df_filtrado.groupby('Dia_Semana_PT')['Faturamento'].mean().reindex(ordem_dias).reset_index()
     
-    fig_dias = px.bar(media_dia_semana, x='Dia_Semana_PT', y='Faturamento',
-                      title="Média de Faturamento Diário",
-                      template="plotly_white",
-                      color='Faturamento',
-                      color_continuous_scale='Blues')
-    
-    fig_dias.update_layout(xaxis_title="Dia da Semana", yaxis_title="Média (R$)")
-    st.plotly_chart(fig_dias, use_container_width=True)
+    # Faturamento Médio
+    with col_raio_x1:      
+        fig_fat_medio = px.bar(media_dia_semana, x='Dia_Semana_PT', y='Faturamento',
+                          title="Média de Faturamento (R$)",
+                          text_auto='.2f',
+                          template="plotly_white",
+                          color_discrete_sequence=['#2E86C1']) # Azul para Dinheiro
+        
+        fig_fat_medio.update_layout(xaxis_title=None, yaxis_title="R$")
+        st.plotly_chart(fig_fat_medio, use_container_width=True)
+
+    # Volume Médio 
+    with col_raio_x2:
+        # Calculamos quantos serviços foram feitos em cada dia específico
+        volume_diario = df_filtrado.groupby(['Data', 'Dia_Semana_PT']).size().reset_index(name='Qtd_Servicos')
+        
+        # Calculamos a média desses volumes por dia da semana
+        media_volume_semana = volume_diario.groupby('Dia_Semana_PT')['Qtd_Servicos'].mean().reindex(ordem_dias).reset_index()
+        
+        fig_vol = px.bar(media_volume_semana, x='Dia_Semana_PT', y='Qtd_Servicos',
+                         title="Média de Veículos Atendidos (Qtd)",
+                         text_auto='.2f', # Mostra 1 casa decimal (ex: 8.3 carros)
+                         template="plotly_white",
+                         color_discrete_sequence=['#E67E22']) 
+        
+        fig_vol.update_layout(xaxis_title=None, yaxis_title="Veículos")
+        st.plotly_chart(fig_vol, use_container_width=True)
 
     # --- TABELA DE DADOS BRUTOS ---
     with st.expander("Ver Dados Detalhados"):
