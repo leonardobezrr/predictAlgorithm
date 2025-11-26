@@ -105,7 +105,26 @@ if not df.empty:
         fig_semanal.update_xaxes(title="Semana (Início)")
         st.plotly_chart(fig_semanal, use_container_width=True)
 
+    # --- GRÁFICO MENSAL ---
+    st.markdown("---") 
+    st.subheader("🗓️ Faturamento Mensal")
+
+    # Agrupando por Mês 
+    vendas_mensais = df_filtrado.set_index('Data').resample('MS')['Faturamento'].sum().reset_index()
     
+    # Formatando a data para exibir apenas Mês/Ano no gráfico (ex: out/2025)
+    vendas_mensais['Mes_Ano'] = vendas_mensais['Data'].dt.strftime('%b/%Y')
+
+    fig_mensal = px.bar(vendas_mensais, x='Mes_Ano', y='Faturamento',
+                        text_auto='R$ .2s', # Mostra o valor em cima da barra
+                        template="plotly_white",
+                        title="Evolução do Faturamento Mês a Mês")
+    
+    # Melhorando o visual das barras
+    fig_mensal.update_traces(marker_color='#1F618D', showlegend=False)
+    fig_mensal.update_layout(xaxis_title="Mês", yaxis_title="Total (R$)")
+    
+    st.plotly_chart(fig_mensal, use_container_width=True)
 
     # Gráfico de Sazonalidade (Dia da Semana)
     st.subheader("📊 Performance por Dia da Semana (Sazonalidade)")
