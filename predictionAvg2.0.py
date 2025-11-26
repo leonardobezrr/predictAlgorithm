@@ -92,8 +92,9 @@ print(df_res)
 plt.figure(figsize=(14, 7))
 plt.plot(y_teste.index, y_teste, label='REAL', color='black', linewidth=3, marker='o')
 plt.plot(y_teste.index, previsoes['MMS_7'], label='Média Móvel (7d)', linestyle='--', alpha=0.7)
-plt.plot(y_teste.index, previsoes['HoltWinters'], label='Holt-Winters', linewidth=2, color='red')
+plt.plot(y_teste.index, previsoes['HoltWinters'], label='Holt-Winters', linewidth=4, color='red')
 plt.plot(y_teste.index, previsoes['Regressao'], label='Regressão Sazonal', linewidth=2, color='green')
+
 
 plt.title('Batalha de Predição: Quem acerta o ciclo semanal?')
 plt.ylabel('Faturamento (R$)')
