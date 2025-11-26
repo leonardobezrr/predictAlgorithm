@@ -84,4 +84,50 @@ if not df.empty:
 
     st.markdown("---")
 
+    # --- ÁREA DE GRÁFICOS ---
     
+    # Layout: 2 colunas para gráficos de tempo
+    g_col1, g_col2 = st.columns(2)
+
+    with g_col1:
+        st.subheader("📈 Faturamento Diário")
+        # Agrupando por dia
+        vendas_diarias = df_filtrado.groupby('Data')['Faturamento'].sum().reset_index()
+        fig_diario = px.line(vendas_diarias, x='Data', y='Faturamento', markers=True, 
+                             template="plotly_white", line_shape='spline')
+        st.plotly_chart(fig_diario, use_container_width=True)
+
+    with g_col2:
+        st.subheader("📅 Faturamento Semanal")
+        # Agrupando por semana (usando resample do pandas)
+        # 'W-MON' inicia a semana na segunda-feira
+        vendas_semanais = df_filtrado.set_index('Data').resample('W-MON')['Faturamento'].sum().reset_index()
+        fig_semanal = px.bar(vendas_semanais, x='Data', y='Faturamento', 
+                             template="plotly_white", color_discrete_sequence=['#2E86C1'])
+        fig_semanal.update_xaxes(title="Semana (Início)")
+        st.plotly_chart(fig_semanal, use_container_width=True)
+
+    # Layout: Gráfico de Sazonalidade (Dia da Semana)
+    st.subheader("📊 Performance por Dia da Semana (Sazonalidade)")
+    
+    # Ordenação correta dos dias da semana
+    ordem_dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
+    
+    # Média de faturamento por dia da semana
+    media_dia_semana = df_filtrado.groupby('Dia_Semana_PT')['Faturamento'].mean().reindex(ordem_dias).reset_index()
+    
+    fig_dias = px.bar(media_dia_semana, x='Dia_Semana_PT', y='Faturamento',
+                      title="Média de Faturamento Diário",
+                      template="plotly_white",
+                      color='Faturamento',
+                      color_continuous_scale='Blues')
+    
+    fig_dias.update_layout(xaxis_title="Dia da Semana", yaxis_title="Média (R$)")
+    st.plotly_chart(fig_dias, use_container_width=True)
+
+    # --- TABELA DE DADOS BRUTOS ---
+    with st.expander("Ver Dados Detalhados"):
+        st.dataframe(df_filtrado.style.format({"Faturamento": "R$ {:.2f}"}))
+
+else:
+    st.warning("Aguardando carregamento dos dados...")
