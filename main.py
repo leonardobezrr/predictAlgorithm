@@ -62,7 +62,7 @@ if not df.empty:
     df_filtrado = df[(df['Data'].dt.date >= data_inicial) & (df['Data'].dt.date <= data_final)]
 
     # --- CABEÇALHO E KPIs (Indicadores-chave de desempenho) ---
-    st.title("🚿 Dashboard Financeiro - Lava Jato")
+    st.title("🚿🚗 Dashboard Financeiro - Gorgônio Lava Jato")
     st.markdown("---")
 
     # Cálculos dos indicadores
@@ -102,7 +102,7 @@ if not df.empty:
         vendas_semanais = df_filtrado.set_index('Data').resample('W-MON')['Faturamento'].sum().reset_index()
         fig_semanal = px.bar(vendas_semanais, x='Data', y='Faturamento', 
                              template="plotly_white", color_discrete_sequence=['#2E86C1'])
-        fig_semanal.update_xaxes(title="Semana (Início)")
+        fig_semanal.update_xaxes(title="Semana (Final)")
         st.plotly_chart(fig_semanal, use_container_width=True)
 
     # --- GRÁFICO MENSAL ---
