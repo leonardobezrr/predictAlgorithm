@@ -45,3 +45,43 @@ def load_data():
         st.error(f"Erro ao carregar os dados: {file}")
         return pd.DataFrame()  # Retorna um DataFrame vazio em caso de erro
     
+df = load_data()
+
+# Se o DataFrame não estiver vazio, monta o dashboard
+if not df.empty:
+
+    # --- BARRA LATERAL (FILTROS) ---
+    st.sidebar.header("Filtros")
+
+    # Filtro de Data
+    data_min = df['Data'].min()
+    data_max = df['Data'].max()
+    data_inicial = st.sidebar.date_input("Data Inicial", data_min)
+    data_final = st.sidebar.date_input("Data Final", data_max)
+
+    # Aplicando o filtro
+    df_filtrado = df[(df['Data'].dt.date >= data_inicial) & (df['Data'].dt.date <= data_final)]
+
+    # --- CABEÇALHO E KPIs (INDICADORES) ---
+    st.title("🚿 Dashboard Financeiro - Lava Jato")
+    st.markdown("---")
+
+    # Cálculos dos KPIs
+    faturamento_total = df_filtrado['Faturamento'].sum()
+    qtd_servicos = len(df_filtrado)
+    ticket_medio = faturamento_total / qtd_servicos if qtd_servicos > 0 else 0
+    
+    # Identificando o melhor dia da semana
+    faturamento_por_dia = df_filtrado.groupby('Dia_Semana_PT')['Faturamento'].sum()
+    melhor_dia = faturamento_por_dia.idxmax() if not faturamento_por_dia.empty else "N/A"
+
+    # Exibindo KPIs em colunas
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Faturamento Total", f"R$ {faturamento_total:,.2f}")
+    col2.metric("Serviços Realizados", qtd_servicos)
+    col3.metric("Ticket Médio", f"R$ {ticket_medio:,.2f}")
+    col4.metric("Melhor Dia da Semana", melhor_dia)
+
+    st.markdown("---")
+
+    
