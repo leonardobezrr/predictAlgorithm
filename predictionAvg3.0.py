@@ -38,7 +38,7 @@ previsoes['Regressao'] = reg.predict(X.iloc[-dias_teste:])
 
 # Holt-Winters Multiplicativo (Vice)
 try:
-    hw = ExponentialSmoothing(y_treino, seasonal_periods=7, trend='add', seasonal='mul').fit()
+    hw = ExponentialSmoothing(y_treino, seasonal_periods=7, trend='add', seasonal='add').fit()
     previsoes['HoltWinters'] = hw.forecast(dias_teste)
 except:
     previsoes['HoltWinters'] = np.nan # Fallback
@@ -90,7 +90,8 @@ plt.figure(figsize=(12, 6))
 plt.plot(y_teste.index, y_teste, 'k-o', linewidth=3, label='REAL')
 plt.plot(y_teste.index, previsoes['Regressao'], '--', color='red', linewidth=4, alpha=0.5, label='Regressão')
 plt.plot(y_teste.index, previsoes['SARIMA'], '-.', color='blue', label='SARIMA')
-plt.plot(y_teste.index, previsoes['Ensemble'], '-', color='green', linewidth=2, label='Ensemble (Híbrido)')
+plt.plot(y_teste.index, previsoes['Ensemble'], '-', color='green', linewidth=4, label='Ensemble (Híbrido)')
+plt.plot(y_teste.index, previsoes['HoltWinters'], '-', color='orange', linewidth=3, label='Holtwinters')
 plt.title('Duelo Final: Estatística Clássica vs Híbrida')
 plt.legend()
 plt.grid(True, alpha=0.3)
