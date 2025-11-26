@@ -5,7 +5,7 @@ import plotly.express as px
 # Configuração da Página (Título e Layout)
 st.set_page_config(page_title="Dashboard Lava-Jato", layout="wide")
 
-# --- FUNÇÃO DE CARREGAMENTO E TRATAMENTO DE DADOS (ETL) ---
+# --- FUNÇÃO DE CARREGAMENTO E TRATAMENTO DE DADOS (ETL - Extrair, transformar e carregar) ---
 @st.cache_data
 def load_data():
     file = "dataLava.csv"
@@ -47,10 +47,9 @@ def load_data():
     
 df = load_data()
 
-# Se o DataFrame não estiver vazio, monta o dashboard
 if not df.empty:
 
-    # --- BARRA LATERAL (FILTROS) ---
+    # --- BARRA LATERAL ---
     st.sidebar.header("Filtros")
 
     # Filtro de Data
@@ -62,11 +61,11 @@ if not df.empty:
     # Aplicando o filtro
     df_filtrado = df[(df['Data'].dt.date >= data_inicial) & (df['Data'].dt.date <= data_final)]
 
-    # --- CABEÇALHO E KPIs (INDICADORES) ---
+    # --- CABEÇALHO E KPIs (Indicadores-chave de desempenho) ---
     st.title("🚿 Dashboard Financeiro - Lava Jato")
     st.markdown("---")
 
-    # Cálculos dos KPIs
+    # Cálculos dos indicadores
     faturamento_total = df_filtrado['Faturamento'].sum()
     qtd_servicos = len(df_filtrado)
     ticket_medio = faturamento_total / qtd_servicos if qtd_servicos > 0 else 0
@@ -86,7 +85,7 @@ if not df.empty:
 
     # --- ÁREA DE GRÁFICOS ---
     
-    # Layout: 2 colunas para gráficos de tempo
+    # 2 colunas para gráficos de tempo
     g_col1, g_col2 = st.columns(2)
 
     with g_col1:
@@ -99,18 +98,19 @@ if not df.empty:
 
     with g_col2:
         st.subheader("📅 Faturamento Semanal")
-        # Agrupando por semana (usando resample do pandas)
-        # 'W-MON' inicia a semana na segunda-feira
+        # Agrupando por semana
         vendas_semanais = df_filtrado.set_index('Data').resample('W-MON')['Faturamento'].sum().reset_index()
         fig_semanal = px.bar(vendas_semanais, x='Data', y='Faturamento', 
                              template="plotly_white", color_discrete_sequence=['#2E86C1'])
         fig_semanal.update_xaxes(title="Semana (Início)")
         st.plotly_chart(fig_semanal, use_container_width=True)
 
-    # Layout: Gráfico de Sazonalidade (Dia da Semana)
+    
+
+    # Gráfico de Sazonalidade (Dia da Semana)
     st.subheader("📊 Performance por Dia da Semana (Sazonalidade)")
     
-    # Ordenação correta dos dias da semana
+    # Ordenando corretamente os dias da semana
     ordem_dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
     
     # Média de faturamento por dia da semana
