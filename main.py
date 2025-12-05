@@ -208,20 +208,35 @@ if not df.empty:
     st.markdown("---") 
     st.subheader("🗓️ Faturamento Mensal")
 
-    # Agrupando por Mês 
-    vendas_mensais = df_filtrado.set_index('Data').resample('MS')['Faturamento'].sum().reset_index()
+    # Agregando os dados 
+    vendas_mensais = df_filtrado.set_index('Data').resample('MS')['Faturamento'].agg(['sum', 'count']).reset_index()
     
-    # Formatando a data para exibir apenas Mês/Ano no gráfico (ex: out/2025)
+    # Renomeando as colunas para facilitar (sum -> Faturamento, count -> Quantidade)
+    vendas_mensais.columns = ['Data', 'Faturamento', 'Quantidade']
+    
+    # Criando a string de Data (Jan/2025)
     vendas_mensais['Mes_Ano'] = vendas_mensais['Data'].dt.strftime('%b/%Y')
 
-    fig_mensal = px.bar(vendas_mensais, x='Mes_Ano', y='Faturamento',
-                        text_auto='.2f', # Mostra o valor em cima da barra
-                        template="plotly_white",
-                        title="Evolução do Faturamento Mês a Mês")
+    # Criando o gráfico
+    fig_mensal = px.bar(
+        vendas_mensais, 
+        x='Mes_Ano', 
+        y='Faturamento',
+        template="plotly_white",
+        title="Evolução do Faturamento e Volume de Serviços",
+        hover_data=['Quantidade'] 
+    )
     
-    # Melhorando o visual das barras
-    fig_mensal.update_traces(marker_color='#1F618D', showlegend=False)
-    fig_mensal.update_layout(xaxis_title="Mês", yaxis_title="Total (R$)")
+    # Personalizando o tooltip (hover)
+    fig_mensal.update_traces(
+        marker_color='#1F618D', 
+        showlegend=False,
+        # HTML Básico para formatar o texto flutuante
+        # %{x} = Mês | %{y} = Valor | %{customdata[0]} = Quantidade
+        hovertemplate='<br><b>%{x}</b><br>💰 R$ %{y:,.2f}<br>🚗 %{customdata[0]} Lavagens<extra></extra>'
+    )
+    
+    fig_mensal.update_layout(xaxis_title=None, yaxis_title="Total (R$)")
     
     st.plotly_chart(fig_mensal, use_container_width=True)
    
