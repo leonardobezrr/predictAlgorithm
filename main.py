@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 # Configuração da Página (Título e Layout)
 st.set_page_config(page_title="Dashboard Lava-Jato", layout="wide")
@@ -85,6 +86,63 @@ if not df.empty:
 
     # --- ÁREA DE GRÁFICOS ---
     
+    # --- WIDGET DE META SEMANAL (Gamificação) ---
+    st.sidebar.markdown("---")
+    st.sidebar.header("🎯 Meta da Semana")
+
+    # Definindo a Meta (R$)
+    META_SEMANAL = 2000.00  
+    
+    # Calculando o Faturamento da Semana Atual
+    ultima_data_arquivo = df['Data'].max()
+    
+    # Encontrando o início dessa semana (Segunda-feira correspondente)
+    inicio_semana = ultima_data_arquivo - pd.Timedelta(days=ultima_data_arquivo.dayofweek)
+    
+    # Filtrando apenas as vendas dessa semana específica
+    vendas_semana_atual = df[
+        (df['Data'] >= inicio_semana) & 
+        (df['Data'] <= ultima_data_arquivo)
+    ]
+    
+    faturamento_atual = vendas_semana_atual['Faturamento'].sum()
+    
+    # Criando o Gráfico de Velocímetro 
+    fig_meta = go.Figure(go.Indicator(
+        mode = "gauge+number+delta",
+        value = faturamento_atual,
+        domain = {'x': [0, 1], 'y': [0, 1]},
+        title = {'text': "Faturamento Atual (R$)"},
+        delta = {'reference': META_SEMANAL, 'relative': False, 'valueformat': '.2f'},
+        gauge = {
+            'axis': {'range': [None, META_SEMANAL * 1.2]}, # Eixo vai até 120% da meta
+            'bar': {'color': "#27AE60"}, # Cor da barra de progresso (Verde)
+            'bgcolor': "white",
+            'borderwidth': 2,
+            'bordercolor': "gray",
+            'steps': [
+                {'range': [0, META_SEMANAL * 0.5], 'color': "#FCBCBC"}, # Vermelho claro (Zona de Perigo)
+                {'range': [META_SEMANAL * 0.5, META_SEMANAL * 0.8], 'color': "#FBEEBB"} # Amarelo (Atenção)
+            ],
+            'threshold': {
+                'line': {'color': "green", 'width': 4},
+                'thickness': 0.75,
+                'value': META_SEMANAL # A linha de chegada
+            }
+        }
+    ))
+
+    fig_meta.update_layout(height=300, margin=dict(l=20, r=20, t=50, b=20))
+    st.sidebar.plotly_chart(fig_meta, use_container_width=True)
+    
+    # Mensagem motivacional simples
+    falta = META_SEMANAL - faturamento_atual
+    if falta > 0:
+        st.sidebar.warning(f"🏃‍♂️ Só faltam **R$ {falta:.2f}** para bater a meta!\n\n 🚀Simbora!!")
+    else:
+        st.sidebar.success("🏆 **META BATIDA! PARABÉNS!** 🎉")
+
+    # --- GRÁFICOS DE TENDÊNCIA DIÁRIA E SEMANAL ---
     # 2 colunas para gráficos de tempo
     g_col1, g_col2 = st.columns(2)
 
