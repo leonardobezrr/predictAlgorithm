@@ -251,30 +251,47 @@ if not df.empty:
     # Média de faturamento por dia da semana
     media_dia_semana = df_filtrado.groupby('Dia_Semana_PT')['Faturamento'].mean().reindex(ordem_dias).reset_index()
     
-    # Faturamento Médio
+    # --- GRÁFICO FATURAMENTO MÉDIO ---
     with col_raio_x1:      
-        fig_fat_medio = px.bar(media_dia_semana, x='Dia_Semana_PT', y='Faturamento',
-                          title="Média de Faturamento (R$)",
-                          text_auto='.2f',
-                          template="plotly_white",
-                          color_discrete_sequence=['#2E86C1']) # Azul para Dinheiro
+        fig_fat_medio = px.bar(
+            media_dia_semana, 
+            x='Dia_Semana_PT', 
+            y='Faturamento',
+            title="Média de Faturamento (R$)",
+            # REMOVIDO: text_auto='.2f' (Isso limpa os números fixos)
+            template="plotly_white",
+            color_discrete_sequence=['#2E86C1'] # Azul
+        )
+        
+        # Configuração do Tooltip (Mouse por cima)
+        fig_fat_medio.update_traces(
+            hovertemplate='<b>%{x}</b><br>💰 Média: R$ %{y:,.2f}<extra></extra>'
+        )
         
         fig_fat_medio.update_layout(xaxis_title=None, yaxis_title="R$")
         st.plotly_chart(fig_fat_medio, use_container_width=True)
 
-    # Volume Médio 
+    # --- GRÁFICO VOLUME MÉDIO ---
     with col_raio_x2:
-        # Calculamos quantos serviços foram feitos em cada dia específico
+        # Lógica de cálculo (mantida)
         volume_diario = df_filtrado.groupby(['Data', 'Dia_Semana_PT']).size().reset_index(name='Qtd_Servicos')
-        
-        # Calculamos a média desses volumes por dia da semana
         media_volume_semana = volume_diario.groupby('Dia_Semana_PT')['Qtd_Servicos'].mean().reindex(ordem_dias).reset_index()
         
-        fig_vol = px.bar(media_volume_semana, x='Dia_Semana_PT', y='Qtd_Servicos',
-                         title="Média de Veículos Atendidos (Qtd)",
-                         text_auto='.2f', # Mostra 1 casa decimal (ex: 8.3 carros)
-                         template="plotly_white",
-                         color_discrete_sequence=['#E67E22']) 
+        fig_vol = px.bar(
+            media_volume_semana, 
+            x='Dia_Semana_PT', 
+            y='Qtd_Servicos',
+            title="Média de Veículos Atendidos (Qtd)",
+            # REMOVIDO: text_auto='.2f'
+            template="plotly_white",
+            color_discrete_sequence=['#E67E22'] # Laranja
+        )
+        
+        # Configuração do Tooltip (Mouse por cima)
+        # %{y:.1f} mostra com 1 casa decimal (ex: 8.5 carros)
+        fig_vol.update_traces(
+            hovertemplate='<b>%{x}</b><br>🚗 Média: %{y:.1f} Veículos<extra></extra>'
+        )
         
         fig_vol.update_layout(xaxis_title=None, yaxis_title="Veículos")
         st.plotly_chart(fig_vol, use_container_width=True)
