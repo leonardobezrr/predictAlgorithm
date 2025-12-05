@@ -243,7 +243,7 @@ if not df.empty:
     # --- GRÁFICOS DE RAIO-X DA OPERAÇÃO ---
 
     st.markdown("---")
-    st.subheader("📊 Raio-X da Operação: Dinheiro vs. Quantidade")
+    st.subheader("📊 Médias: Dinheiro vs. Quantidade")
 
     col_raio_x1, col_raio_x2 = st.columns(2)
     ordem_dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
