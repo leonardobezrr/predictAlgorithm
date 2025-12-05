@@ -146,12 +146,53 @@ if not df.empty:
     # 2 colunas para gráficos de tempo
     g_col1, g_col2 = st.columns(2)
 
+    # Gráfico de Faturamento Diário 
     with g_col1:
         st.subheader("📈 Faturamento Diário")
-        # Agrupando por dia
+        
+        # Agrupando
         vendas_diarias = df_filtrado.groupby('Data')['Faturamento'].sum().reset_index()
-        fig_diario = px.line(vendas_diarias, x='Data', y='Faturamento', markers=True, 
-                             template="plotly_white", line_shape='spline')
+        
+        # Rótulos (Apenas Iniciais: S, T, Q...)
+        mapa_letras = {0: 'S', 1: 'T', 2: 'Q', 3: 'Q', 4: 'S', 5: 'S', 6: 'D'}
+        rotulos_eixo = [mapa_letras[d.dayofweek] for d in vendas_diarias['Data']]
+        
+        # Gráfico Base
+        fig_diario = px.line(
+            vendas_diarias, 
+            x='Data', 
+            y='Faturamento', 
+            markers=True,
+            template="plotly_white", 
+            line_shape='spline'
+        )
+        
+        # Configurando o Eixo X (Com a Linha Vertical Interativa)
+        fig_diario.update_xaxes(
+            tickmode='array',
+            tickvals=vendas_diarias['Data'],
+            ticktext=rotulos_eixo,
+            title=None,
+            showgrid=False,        # Garante que não tenha grade vertical também
+            
+            # Spike Line (Linha Guia Vertical)
+            showspikes=True,
+            spikemode='toaxis',
+            spikesnap='cursor',
+            spikedash='dot',
+            spikecolor='#999999',
+            spikethickness=1
+        )
+        
+        # Configurando o Eixo Y 
+        fig_diario.update_yaxes(title=None, showgrid=False) 
+
+        # Interação
+        fig_diario.update_layout(hovermode="x") # Linha vertical segue o mouse
+        
+        # Tooltip
+        fig_diario.update_traces(hovertemplate='<b>%{x|%d/%m/%Y}</b><br>R$ %{y:,.2f}')
+        
         st.plotly_chart(fig_diario, use_container_width=True)
 
     with g_col2:
@@ -160,7 +201,7 @@ if not df.empty:
         vendas_semanais = df_filtrado.set_index('Data').resample('W-SUN')['Faturamento'].sum().reset_index()
         fig_semanal = px.bar(vendas_semanais, x='Data', y='Faturamento', 
                              template="plotly_white", color_discrete_sequence=['#2E86C1'])
-        fig_semanal.update_xaxes(title="Semana (Final)")
+        fig_semanal.update_xaxes(title="Semana (Domingo)")
         st.plotly_chart(fig_semanal, use_container_width=True)
 
     # --- GRÁFICO MENSAL ---
