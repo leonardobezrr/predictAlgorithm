@@ -99,7 +99,7 @@ if not df.empty:
     with g_col2:
         st.subheader("📅 Faturamento Semanal")
         # Agrupando por semana
-        vendas_semanais = df_filtrado.set_index('Data').resample('W-MON')['Faturamento'].sum().reset_index()
+        vendas_semanais = df_filtrado.set_index('Data').resample('W-SUN')['Faturamento'].sum().reset_index()
         fig_semanal = px.bar(vendas_semanais, x='Data', y='Faturamento', 
                              template="plotly_white", color_discrete_sequence=['#2E86C1'])
         fig_semanal.update_xaxes(title="Semana (Final)")
