@@ -138,7 +138,7 @@ if not df.empty:
     # Mensagem motivacional simples
     falta = META_SEMANAL - faturamento_atual
     if falta > 0:
-        st.sidebar.warning(f"🏃‍♂️ Só faltam **R$ {falta:.2f}** para bater a meta!\n\n 🚀Simbora!!")
+        st.sidebar.warning(f"🏃‍♂️ Só falta **R$ {falta:.2f}** para bater a meta!\n\n 🚀Simbora!!")
     else:
         st.sidebar.success("🏆 **META BATIDA! PARABÉNS!** 🎉")
 
