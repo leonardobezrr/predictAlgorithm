@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import numpy as np
 
 # Configuração da Página (Título e Layout)
 st.set_page_config(page_title="Dashboard Lava-Jato", layout="wide")
@@ -316,6 +317,168 @@ if not df.empty:
     # --- TABELA DE DADOS BRUTOS ---
     with st.expander("Ver Dados Detalhados"):
         st.dataframe(df_filtrado.style.format({"Faturamento": "R$ {:.2f}"}))
+
+    # --- SEÇÃO DE PREVISÃO DE DEMANDA ---
+
+    # Criando abas para separar o "Passado" do "Futuro"
+    tab_historico, tab_previsao = st.tabs(["📊 Visão Histórica", "🔮 Previsão de Metas (IA)"])
+
+    with tab_historico:
+        with g_col1:
+            
+            # Agrupando
+            vendas_diarias = df_filtrado.groupby('Data')['Faturamento'].sum().reset_index()
+            
+            # Rótulos (Apenas Iniciais: S, T, Q...)
+            mapa_letras = {0: 'S', 1: 'T', 2: 'Q', 3: 'Q', 4: 'S', 5: 'S', 6: 'D'}
+            rotulos_eixo = [mapa_letras[d.dayofweek] for d in vendas_diarias['Data']]
+            
+            # Gráfico Base
+            fig_diario = px.line(
+                vendas_diarias, 
+                x='Data', 
+                y='Faturamento', 
+                markers=True,
+                template="plotly_white", 
+                line_shape='spline'
+            )
+            
+            # Configurando o Eixo X (Com a Linha Vertical Interativa)
+            fig_diario.update_xaxes(
+                tickmode='array',
+                tickvals=vendas_diarias['Data'],
+                ticktext=rotulos_eixo,
+                title=None,
+                showgrid=False,        # Garante que não tenha grade vertical também
+                
+                # Spike Line (Linha Guia Vertical)
+                showspikes=True,
+                spikemode='toaxis',
+                spikesnap='cursor',
+                spikedash='dot',
+                spikecolor='#999999',
+                spikethickness=1
+            )
+            
+            # Configurando o Eixo Y 
+            fig_diario.update_yaxes(title=None, showgrid=False) 
+
+            # Interação
+            fig_diario.update_layout(hovermode="x") # Linha vertical segue o mouse
+            
+            # Tooltip
+            fig_diario.update_traces(hovertemplate='<b>%{x|%d/%m/%Y}</b><br>R$ %{y:,.2f}')
+            
+        st.info("👆 Aqui estão os dados que analisamos anteriormente.")
+
+    with tab_previsao:
+        st.header("🤖 Inteligência Artificial: Previsão para Próxima Semana")
+        
+        # Executar a previsão apenas se houver dados suficientes
+        if len(df) > 14: # Precisa de pelo menos 2 semanas pra brincar
+            
+            # 1. Preparar dados para o Modelo (Regressão - O mais robusto para produção)
+            # Vamos usar a Regressão Linear pois ela é mais rápida e estável para o App
+            from sklearn.linear_model import LinearRegression
+            
+            # Agrupamento diário
+            df_prev = df.groupby('Data')['Faturamento'].sum().asfreq('D').fillna(0).reset_index()
+            df_prev['Dia_Semana'] = df_prev['Data'].dt.dayofweek
+            df_prev['Tempo'] = np.arange(len(df_prev))
+            
+            # Treino (Usa tudo até hoje)
+            X = pd.get_dummies(df_prev['Dia_Semana'], prefix='D', drop_first=True)
+            X['Tempo'] = df_prev['Tempo']
+            y = df_prev['Faturamento']
+            
+            modelo = LinearRegression()
+            modelo.fit(X, y)
+            
+            # 2. Criar Datas Futuras (Próximos 7 dias)
+            ultima_data = df_prev['Data'].max()
+            datas_futuras = pd.date_range(start=ultima_data + pd.Timedelta(days=1), periods=7)
+            
+            df_futuro = pd.DataFrame({'Data': datas_futuras})
+            df_futuro['Dia_Semana'] = df_futuro['Data'].dt.dayofweek
+            df_futuro['Tempo'] = np.arange(len(df_prev), len(df_prev) + 7)
+            
+            # Preparar X do futuro (garantindo as mesmas colunas)
+            X_futuro = pd.get_dummies(df_futuro['Dia_Semana'], prefix='D', drop_first=True)
+            X_futuro['Tempo'] = df_futuro['Tempo']
+            # Alinha as colunas (se faltar alguma dummy no futuro, preenche com 0)
+            X_futuro = X_futuro.reindex(columns=X.columns, fill_value=0)
+            
+            # Prevendo o Futuro
+            y_pred = modelo.predict(X_futuro)
+            df_futuro['Previsao'] = np.maximum(y_pred, 0) # Garante que não seja negativo
+            
+            # Exibindo Métricas e Gráfico
+            total_previsto = df_futuro['Previsao'].sum()
+            col_meta, col_sabado = st.columns(2)
+            
+            col_meta.metric(
+                "💰 Meta de Faturamento (Próx. 7 Dias)", 
+                f"R$ {total_previsto:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
+            )
+            
+            # Pega a previsão do próximo Sábado (Dia 5 da semana)
+            prev_sabado = df_futuro[df_futuro['Dia_Semana'] == 5]['Previsao']
+            valor_sabado = prev_sabado.values[0] if not prev_sabado.empty else 0
+            
+            col_sabado.metric(
+                "🚗 Previsão para o Próximo Sábado", 
+                f"R$ {valor_sabado:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
+            )
+            
+            # Gráfico de Linha (Conectando Passado e Futuro)
+            # Pegamos os últimos 14 dias reais + 7 dias futuros
+            df_historico_recente = df_prev.tail(14).copy()
+            df_historico_recente['Tipo'] = 'Realizado'
+            df_historico_recente.rename(columns={'Faturamento': 'Valor'}, inplace=True)
+            
+            df_futuro_plot = df_futuro[['Data', 'Previsao']].copy()
+            df_futuro_plot['Tipo'] = 'Previsão IA'
+            df_futuro_plot.rename(columns={'Previsao': 'Valor'}, inplace=True)
+            
+            df_final_plot = pd.concat([df_historico_recente[['Data', 'Valor', 'Tipo']], df_futuro_plot])
+            
+            # Gráfico de Linha (Conectando Passado e Futuro)            
+            fig_prev = px.line(
+                df_final_plot, 
+                x='Data', 
+                y='Valor', 
+                color='Tipo',
+                markers=True,
+                title="Tendência Recente vs. Previsão",
+                color_discrete_map={
+                    'Realizado': '#FFFFFF',  # Branco Puro (para destacar no fundo escuro)
+                    'Previsão IA': '#00BFFF' # Azul Cyan Neon (para destacar a previsão)
+                }
+            )
+            
+            # Estilo tracejado para o futuro
+            fig_prev.update_traces(patch={"line": {"dash": "dot"}}, selector={"legendgroup": "Previsão IA"})
+            
+            # Isso garante que ele respeite o modo escuro do Streamlit
+            fig_prev.update_layout(
+                paper_bgcolor='rgba(0,0,0,0)', 
+                plot_bgcolor='rgba(0,0,0,0)',
+                font=dict(color="white") # Garante que os textos dos eixos fiquem brancos também
+            )
+            
+            st.plotly_chart(fig_prev, use_container_width=True)
+            
+            # Estilo tracejado para o futuro
+            fig_prev.update_traces(patch={"line": {"dash": "dot"}}, selector={"legendgroup": "Previsão IA"})
+                        
+            with st.expander("Ver Tabela de Metas Diárias"):
+                tabela_show = df_futuro[['Data', 'Previsao']].copy()
+                tabela_show['Dia'] = tabela_show['Data'].dt.day_name()
+                tabela_show['Previsao'] = tabela_show['Previsao'].apply(lambda x: f"R$ {x:,.2f}")
+                st.dataframe(tabela_show)
+
+        else:
+            st.warning("⚠️ Precisamos de mais dados! Continue cadastrando o faturamento diário para liberar a IA.")
 
 else:
     st.warning("Aguardando carregamento dos dados...")
